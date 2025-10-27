@@ -1,3 +1,5 @@
+<!doctype html>
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -5,7 +7,7 @@
   <meta name="description" content="RFM Play — minimalist internet radio player. Simple. Elegant. Yours.">
   <link rel="canonical" href="https://rfmplay.github.io/">
 
-  <!-- 👇 Подключаем Baron Neue Bold с CDN -->
+  <!-- 👇 Font: Baron Neue Bold -->
   <link href="https://fonts.cdnfonts.com/css/baron-neue" rel="stylesheet">
 
   <style>
@@ -15,10 +17,56 @@
   --font:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,Apple Color Emoji,Segoe UI Emoji;
 }
 html,body{
-  margin:0;padding:0;
+  margin:0;
+  padding:0;
   background:var(--bg);
   color:var(--fg);
   font-family:var(--font);
+  height:100%;
+}
+a{color:var(--fg);text-decoration:none}
+.btn{
+  display:inline-flex;
+  gap:8px;
+  align-items:center;
+  justify-content:center;
+  padding:10px 14px;
+  border:1px solid var(--stroke);
+  border-radius:12px;
+  background:var(--btnbg);
+}
+.btn:hover{border-color:var(--accent)}
+.row{
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+  align-items:center;
+  justify-content:center;
+}
+footer{
+  color:var(--muted);
+  font-size:13px;
+  text-align:center;
+  padding:14px 0 20px;
+}
+.small{font-size:13px;color:var(--muted)}
+
+.wrap{
+  max-width:var(--maxw);
+  margin:0 auto;
+  padding:18px 16px;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-start;
+}
+.hero{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  text-align:center;
+  gap:12px;
+  margin-top:5vh;
 }
 h1{
   font-family:'Baron Neue', sans-serif;
@@ -29,5 +77,96 @@ h1{
   line-height:1.1;
   margin:0;
 }
+.lead{font-size:18px;color:var(--muted);margin:0}
+.desc{
+  max-width:720px;
+  color:var(--muted);
+  font-size:15px;
+  line-height:1.6;
+  margin:0;
+}
+.section{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  align-items:center;
+}
+
+/* === STORE BUTTONS CENTERED === */
+.stores{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin:36px 0 22px;
+}
+.stores .store-row{
+  display:flex;
+  flex-direction:row;
+  gap:20px;
+  justify-content:center;
+  align-items:center;
+}
+.store-img{
+  width:200px;
+  height:auto;
+  display:block;
+  filter:contrast(1.05);
+}
+
+/* === ACTION BUTTONS (Privacy / Terms) === */
+.actions{
+  margin-top:40px; /* <- отступ увеличен */
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+
+/* Mobile: stack vertically (App Store above, Google Play below) */
+@media (max-width:600px){
+  .stores .store-row{
+    flex-direction:column-reverse;
+    gap:14px;
+  }
+  .store-img{width:180px}
+  h1{font-size:34px}
+  .lead{font-size:16px}
+  .desc{font-size:14px}
+  .hero{gap:10px;margin-top:3vh}
+}
   </style>
 </head>
+<body>
+  <main class="wrap">
+    <section class="hero">
+      <h1>RFM Play</h1>
+      <p class="lead">Simple. Elegant. Yours.</p>
+      <p class="desc">
+        A minimalist player for internet radio streams. Add your station URL and enjoy a clean, distraction-free experience —
+        perfect for listeners and creators who want a beautiful app without ads, accounts, or subscriptions.
+      </p>
+    </section>
+
+    <!-- STORE BUTTONS -->
+    <section class="stores" aria-label="Store badges">
+      <div class="store-row">
+        <a href="#" aria-label="Google Play (coming soon)">
+          <img class="store-img" src="/assets/googleplay-badge.svg" alt="Get it on Google Play" loading="lazy">
+        </a>
+        <a href="#" aria-label="App Store (coming soon)">
+          <img class="store-img" src="/assets/appstore-badge.svg" alt="Download on the App Store" loading="lazy">
+        </a>
+      </div>
+    </section>
+
+    <!-- PRIVACY & TERMS -->
+    <section class="section actions">
+      <div class="row">
+        <a class="btn" href="/privacy/">📜 Privacy Policy (EN)</a>
+        <a class="btn" href="/terms/">📘 Terms of Use (EN)</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>© 2025 RFM Play · Updated 2025-10-27</footer>
+</body>
+</html>
