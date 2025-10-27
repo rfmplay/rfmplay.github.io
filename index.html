@@ -12,30 +12,86 @@
   --stroke:#2a2a2a; --btnbg:#141414; --maxw:920px;
   --font:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,Apple Color Emoji,Segoe UI Emoji;
 }
-html,body{margin:0;padding:0;background:var(--bg);color:var(--fg);font-family:var(--font);}
+html,body{
+  margin:0;
+  padding:0;
+  background:var(--bg);
+  color:var(--fg);
+  font-family:var(--font);
+  height:100%;
+}
 a{color:var(--fg);text-decoration:none}
-.btn{display:inline-flex;gap:8px;align-items:center;justify-content:center;
-  padding:10px 14px;border:1px solid var(--stroke);border-radius:12px;background:var(--btnbg);}
+.btn{
+  display:inline-flex;
+  gap:8px;
+  align-items:center;
+  justify-content:center;
+  padding:10px 14px;
+  border:1px solid var(--stroke);
+  border-radius:12px;
+  background:var(--btnbg);
+}
 .btn:hover{border-color:var(--accent)}
-.row{display:flex;gap:12px;flex-wrap:wrap;align-items:center;justify-content:center}
-footer{color:var(--muted);font-size:13px;text-align:center;padding:14px 0 20px}
+.row{
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+  align-items:center;
+  justify-content:center
+}
+footer{
+  color:var(--muted);
+  font-size:13px;
+  text-align:center;
+  padding:14px 0 20px
+}
 .small{font-size:13px;color:var(--muted)}
 
-.wrap{max-width:var(--maxw);margin:0 auto;padding:18px 16px;min-height:100vh;
-  display:flex;flex-direction:column;justify-content:space-between}
-.hero{display:flex;flex-direction:column;align-items:center;text-align:center;gap:12px;margin-top:6vh}
-h1{font-size:40px;line-height:1.1;margin:0;font-weight:800;letter-spacing:.2px}
+.wrap{
+  max-width:var(--maxw);
+  margin:0 auto;
+  padding:18px 16px;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-start;
+}
+.hero{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  text-align:center;
+  gap:12px;
+  margin-top:5vh;
+}
+h1{
+  font-size:40px;
+  line-height:1.1;
+  margin:0;
+  font-weight:800;
+  letter-spacing:.2px
+}
 .lead{font-size:18px;color:var(--muted);margin:0}
-.desc{max-width:720px;color:var(--muted);font-size:15px;line-height:1.6;margin:0}
-.section{display:flex;flex-direction:column;gap:10px;align-items:center}
+.desc{
+  max-width:720px;
+  color:var(--muted);
+  font-size:15px;
+  line-height:1.6;
+  margin:0
+}
+.section{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  align-items:center
+}
 
 /* === STORE BUTTONS CENTERED === */
 .stores{
   display:flex;
   align-items:center;
   justify-content:center;
-  flex:1;
-  margin:30px 0;
+  margin:36px 0 22px;
 }
 .stores .store-row{
   display:flex;
@@ -51,17 +107,25 @@ h1{font-size:40px;line-height:1.1;margin:0;font-weight:800;letter-spacing:.2px}
   filter:contrast(1.05);
 }
 
+/* === ACTION BUTTONS (Privacy / Terms) === */
+.actions{
+  margin-top:10px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+
 /* Mobile: stack vertically (App Store above, Google Play below) */
 @media (max-width:600px){
   .stores .store-row{
-    flex-direction:column-reverse; /* Google Play below, App Store above */
+    flex-direction:column-reverse;
     gap:14px;
   }
   .store-img{width:180px}
   h1{font-size:34px}
   .lead{font-size:16px}
   .desc{font-size:14px}
-  .hero{gap:10px;margin-top:4vh}
+  .hero{gap:10px;margin-top:3vh}
 }
   </style>
 </head>
@@ -76,7 +140,7 @@ h1{font-size:40px;line-height:1.1;margin:0;font-weight:800;letter-spacing:.2px}
       </p>
     </section>
 
-    <!-- STORE BUTTONS moved ABOVE -->
+    <!-- STORE BUTTONS placed higher -->
     <section class="stores" aria-label="Store badges">
       <div class="store-row">
         <a href="#" aria-label="Google Play (coming soon)">
@@ -88,7 +152,7 @@ h1{font-size:40px;line-height:1.1;margin:0;font-weight:800;letter-spacing:.2px}
       </div>
     </section>
 
-    <!-- PRIVACY & TERMS moved BELOW -->
+    <!-- PRIVACY & TERMS right below -->
     <section class="section actions">
       <div class="row">
         <a class="btn" href="/privacy/">📜 Privacy Policy (EN)</a>
