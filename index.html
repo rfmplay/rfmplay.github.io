@@ -7,7 +7,7 @@
   <meta name="description" content="RFM Play — minimalist internet radio player. Simple. Elegant. Yours.">
   <link rel="canonical" href="https://rfmplay.github.io/">
 
-  <!-- 👇 Font: Baron Neue Bold -->
+  <!-- Baron Neue -->
   <link href="https://fonts.cdnfonts.com/css/baron-neue" rel="stylesheet">
 
   <style>
@@ -16,127 +16,70 @@
   --stroke:#2a2a2a; --btnbg:#141414; --maxw:920px;
   --font:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,Apple Color Emoji,Segoe UI Emoji;
 }
+
+/* Base */
 html,body{
-  margin:0;
-  padding:0;
-  background:var(--bg);
-  color:var(--fg);
+  margin:0; padding:0;
+  background:var(--bg); color:var(--fg);
   font-family:var(--font);
   height:100%;
+  overflow:hidden;               /* ⛔️ без прокрутки */
 }
 a{color:var(--fg);text-decoration:none}
 .btn{
-  display:inline-flex;
-  gap:8px;
-  align-items:center;
-  justify-content:center;
-  padding:10px 14px;
-  border:1px solid var(--stroke);
-  border-radius:12px;
-  background:var(--btnbg);
+  display:inline-flex; gap:8px; align-items:center; justify-content:center;
+  padding:10px 14px; border:1px solid var(--stroke);
+  border-radius:12px; background:var(--btnbg);
 }
 .btn:hover{border-color:var(--accent)}
-.row{
-  display:flex;
-  gap:12px;
-  flex-wrap:wrap;
-  align-items:center;
-  justify-content:center;
-}
-footer{
-  color:var(--muted);
-  font-size:13px;
-  text-align:center;
-  padding:14px 0 20px;
-}
-.small{font-size:13px;color:var(--muted)}
+.row{display:flex; gap:12px; flex-wrap:wrap; align-items:center; justify-content:center}
+footer{color:var(--muted); font-size:13px; text-align:center; padding:10px 0 14px}
 
+/* Layout: всё влезает в 100vh */
 .wrap{
-  max-width:var(--maxw);
-  margin:0 auto;
-  padding:18px 16px;
-  min-height:100vh;
-  display:flex;
-  flex-direction:column;
-  justify-content:flex-start;
+  max-width:var(--maxw); height:100vh; margin:0 auto; padding:16px;
+  display:grid;
+  grid-template-rows: auto auto auto auto;  /* hero / stores / actions / footer */
+  align-content:start;
+  row-gap:clamp(10px, 3vh, 24px);
 }
-.hero{
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  text-align:center;
-  gap:12px;
-  margin-top:5vh;
-}
+
+/* Hero */
+.hero{display:flex; flex-direction:column; align-items:center; text-align:center; gap:10px}
 h1{
-  font-family:'Baron Neue', sans-serif;
-  font-weight:700;
-  font-size:40px;
+  font-family:'Baron Neue', sans-serif; font-weight:700;
+  font-size:40px; line-height:1.1; margin:0; letter-spacing:.5px;
   text-transform:capitalize;
-  letter-spacing:0.5px;
-  line-height:1.1;
-  margin:0;
 }
-.lead{font-size:18px;color:var(--muted);margin:0}
-.desc{
-  max-width:720px;
-  color:var(--muted);
-  font-size:15px;
-  line-height:1.6;
-  margin:0;
-}
-.section{
-  display:flex;
-  flex-direction:column;
-  gap:10px;
-  align-items:center;
-}
+.lead{font-size:18px; color:var(--muted); margin:0}
+.desc{max-width:720px; color:var(--muted); font-size:15px; line-height:1.6; margin:0}
 
-/* === STORE BUTTONS CENTERED === */
-.stores{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  margin:36px 0 22px;
-}
-.stores .store-row{
-  display:flex;
-  flex-direction:row;
-  gap:20px;
-  justify-content:center;
-  align-items:center;
-}
-.store-img{
-  width:200px;
-  height:auto;
-  display:block;
-  filter:contrast(1.05);
-}
+/* Stores (по центру, повыше) */
+.stores{display:flex; align-items:center; justify-content:center}
+.store-row{display:flex; flex-direction:row; gap:20px; align-items:center; justify-content:center}
+.store-img{width:200px; height:auto; display:block; filter:contrast(1.05)}
 
-/* === ACTION BUTTONS (Privacy / Terms) === */
-.actions{
-  margin-top:40px; /* <- отступ увеличен */
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-}
+/* Actions (ниже, с большим воздухом) */
+.actions{display:flex; flex-direction:column; align-items:center; margin-top:clamp(18px,4vh,40px)}
 
-/* Mobile: stack vertically (App Store above, Google Play below) */
+/* Footer слегка прижат к низу сеткой */
+.site-footer{align-self:end}
+
+/* Mobile tweaks: чтобы точно влезало без скролла */
 @media (max-width:600px){
-  .stores .store-row{
-    flex-direction:column-reverse;
-    gap:14px;
-  }
-  .store-img{width:180px}
+  .wrap{row-gap:clamp(8px, 2.5vh, 18px); padding:12px}
   h1{font-size:34px}
   .lead{font-size:16px}
   .desc{font-size:14px}
-  .hero{gap:10px;margin-top:3vh}
+  .store-row{flex-direction:column-reverse; gap:12px} /* App Store сверху */
+  .store-img{width:168px}
+  .actions{margin-top:clamp(12px,3vh,24px)}
 }
   </style>
 </head>
 <body>
   <main class="wrap">
+    <!-- HERO -->
     <section class="hero">
       <h1>RFM Play</h1>
       <p class="lead">Simple. Elegant. Yours.</p>
@@ -146,7 +89,7 @@ h1{
       </p>
     </section>
 
-    <!-- STORE BUTTONS -->
+    <!-- STORES (выше) -->
     <section class="stores" aria-label="Store badges">
       <div class="store-row">
         <a href="#" aria-label="Google Play (coming soon)">
@@ -158,15 +101,16 @@ h1{
       </div>
     </section>
 
-    <!-- PRIVACY & TERMS -->
-    <section class="section actions">
+    <!-- POLICIES (ниже) -->
+    <section class="actions" aria-label="Legal links">
       <div class="row">
         <a class="btn" href="/privacy/">📜 Privacy Policy (EN)</a>
         <a class="btn" href="/terms/">📘 Terms of Use (EN)</a>
       </div>
     </section>
-  </main>
 
-  <footer>© 2025 RFM Play · Updated 2025-10-27</footer>
+    <!-- FOOTER -->
+    <footer class="site-footer">© 2025 RFM Play · Updated 2025-10-27</footer>
+  </main>
 </body>
 </html>
