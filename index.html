@@ -23,7 +23,7 @@ html,body{
   background:var(--bg); color:var(--fg);
   font-family:var(--font);
   height:100%;
-  overflow:hidden;               /* ⛔️ без прокрутки */
+  overflow:hidden; /* без прокрутки */
 }
 a{color:var(--fg);text-decoration:none}
 .btn{
@@ -33,15 +33,14 @@ a{color:var(--fg);text-decoration:none}
 }
 .btn:hover{border-color:var(--accent)}
 .row{display:flex; gap:12px; flex-wrap:wrap; align-items:center; justify-content:center}
-footer{color:var(--muted); font-size:13px; text-align:center; padding:10px 0 14px}
+.small{font-size:13px; color:var(--muted)}
 
-/* Layout: всё влезает в 100vh */
+/* Layout: 100vh, футер у низа, policy над ним */
 .wrap{
   max-width:var(--maxw); height:100vh; margin:0 auto; padding:16px;
   display:grid;
-  grid-template-rows: auto auto auto auto;  /* hero / stores / actions / footer */
-  align-content:start;
-  row-gap:clamp(10px, 3vh, 24px);
+  grid-template-rows: auto auto 1fr auto; /* hero / stores / spacer / policy+footer */
+  row-gap:clamp(10px, 3vh, 20px);
 }
 
 /* Hero */
@@ -59,21 +58,20 @@ h1{
 .store-row{display:flex; flex-direction:row; gap:20px; align-items:center; justify-content:center}
 .store-img{width:200px; height:auto; display:block; filter:contrast(1.05)}
 
-/* Actions (ниже, с большим воздухом) */
-.actions{display:flex; flex-direction:column; align-items:center; margin-top:clamp(18px,4vh,40px)}
+/* Actions (policy) — прижаты к низу благодаря 1fr-спейсеру */
+.actions{display:flex; flex-direction:column; align-items:center; margin-top:0}
 
-/* Footer слегка прижат к низу сеткой */
-.site-footer{align-self:end}
+/* Footer у самого низа грид-контейнера */
+footer{color:var(--muted); font-size:13px; text-align:center; align-self:end; padding:6px 0 10px}
 
-/* Mobile tweaks: чтобы точно влезало без скролла */
+/* Mobile tweaks */
 @media (max-width:600px){
-  .wrap{row-gap:clamp(8px, 2.5vh, 18px); padding:12px}
+  .wrap{row-gap:clamp(8px, 2.4vh, 16px); padding:12px}
   h1{font-size:34px}
   .lead{font-size:16px}
   .desc{font-size:14px}
   .store-row{flex-direction:column-reverse; gap:12px} /* App Store сверху */
   .store-img{width:168px}
-  .actions{margin-top:clamp(12px,3vh,24px)}
 }
   </style>
 </head>
@@ -89,7 +87,7 @@ h1{
       </p>
     </section>
 
-    <!-- STORES (выше) -->
+    <!-- STORES -->
     <section class="stores" aria-label="Store badges">
       <div class="store-row">
         <a href="#" aria-label="Google Play (coming soon)">
@@ -101,7 +99,9 @@ h1{
       </div>
     </section>
 
-    <!-- POLICIES (ниже) -->
+    <!-- (SPACER row создаётся автоматически: 1fr) -->
+
+    <!-- POLICIES (над футером) -->
     <section class="actions" aria-label="Legal links">
       <div class="row">
         <a class="btn" href="/privacy/">📜 Privacy Policy (EN)</a>
@@ -109,8 +109,8 @@ h1{
       </div>
     </section>
 
-    <!-- FOOTER -->
-    <footer class="site-footer">© 2025 RFM Play · Updated 2025-10-27</footer>
+    <!-- FOOTER у низа -->
+    <footer>© 2025 RFM Play · Updated 2025-10-27</footer>
   </main>
 </body>
 </html>
