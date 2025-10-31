@@ -17,52 +17,58 @@
   --font:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,Apple Color Emoji,Segoe UI Emoji;
 }
 
-/* Base */
+/* Base — без прокрутки */
 html,body{
   margin:0; padding:0;
   background:var(--bg); color:var(--fg);
   font-family:var(--font);
   height:100%;
-  overflow:auto; /* разрешаем прокрутку для очень маленьких экранов */
+  overflow:hidden; /* полностью убираем прокрутку */
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  box-sizing:border-box;
 }
+*,*::before,*::after{box-sizing:inherit}
 a{color:var(--fg);text-decoration:none}
 .btn{
   display:inline-flex; gap:8px; align-items:center; justify-content:center;
   padding:10px 14px; border:1px solid var(--stroke);
   border-radius:12px; background:var(--btnbg);
+  white-space:nowrap;
 }
 .btn:hover{border-color:var(--accent)}
 .row{display:flex; gap:12px; flex-wrap:wrap; align-items:center; justify-content:center}
 .small{font-size:13px; color:var(--muted)}
 
-/* Layout: flex-колонка, policy прижат вниз */
+/* Полный экран, распределяем пространство так, чтобы футер и политики были видны */
 .wrap{
   max-width:var(--maxw);
-  min-height:100vh;
+  height:100vh;               /* занять весь экран без прокрутки */
   margin:0 auto;
-  padding:16px;
-  padding-bottom:48px; /* дополнительный отступ снизу, чтобы footer был виден */
+  padding:20px 18px;         /* общий отступ вокруг */
   display:flex;
   flex-direction:column;
+  justify-content:space-between; /* сверху — центр блока, внизу — политики+футер */
+  align-items:center;
 }
 
-/* Центрируем основной блок (hero + stores) внутри доступной высоты.
-   Смещаем немного вверх overall, а сам .hero поднимаем ещё выше */
+/* Центрируем основной блок (hero + stores).
+   Поднимаем его чуть выше центра экрана */
 .center{
-  flex:1 0 auto;
   display:flex;
   flex-direction:column;
   align-items:center;
   justify-content:center;
-  gap:18px;
-  padding-top:3vh;   /* меньше, чем было — поднимает блок вверх */
-  padding-bottom:6vh;
+  gap:14px;
+  flex:0 1 auto;
+  width:100%;
+  padding-top:2vh;
 }
 
-/* Hero */
+/* Делаем заголовок выше центра (не в потолок) */
 .hero{
   display:flex; flex-direction:column; align-items:center; text-align:center; gap:10px;
-  transform:translateY(-5vh); /* поднимаем заголовок/описание выше центра */
+  transform:translateY(-8vh); /* поднять заголовок/описание выше центра */
 }
 h1{
   font-family:'Baron Neue', sans-serif; font-weight:700;
@@ -70,33 +76,44 @@ h1{
   text-transform:capitalize;
 }
 .lead{font-size:18px; color:var(--muted); margin:0}
-.desc{max-width:720px; color:var(--muted); font-size:15px; line-height:1.6; margin:0}
+.desc{max-width:720px; color:var(--muted); font-size:15px; line-height:1.5; margin:0}
 
-/* Stores — чуть ниже описания */
-.stores{display:flex; align-items:center; justify-content:center; margin:6px 0 0}
+/* Stores — адаптивный размер бейджей */
+.stores{display:flex; align-items:center; justify-content:center; margin:6px 0 0; width:100%}
 .store-row{display:flex; flex-direction:row; gap:20px; align-items:center; justify-content:center}
-.store-img{width:200px; height:auto; display:block; filter:contrast(1.05)}
+.store-img{width:clamp(140px,16vw,200px); height:auto; display:block; filter:contrast(1.05); max-width:45%}
 
-/* Actions — приподнимаем от нижнего края: убираем авто-отталкивание вниз */
+/* Policies & footer — приподнять от нижнего края, чтобы всё было видно */
 .actions{
-  margin-top:16px; /* фиксированный отступ, поднимает блок выше от низа */
-  margin-bottom:22px;
-  display:flex; flex-direction:column; align-items:center;
+  display:flex; flex-direction:column; align-items:center; gap:8px;
+  margin:0;
+  padding-bottom:6px;
 }
+footer{color:var(--muted); font-size:13px; text-align:center; padding:4px 0 6px}
 
-/* Footer у самого низа — немного выше нижнего края */
-footer{color:var(--muted); font-size:13px; text-align:center; padding:6px 0 12px}
-
-/* Mobile tweaks */
-@media (max-width:600px){
-  .wrap{padding:12px; padding-bottom:36px}
-  h1{font-size:34px}
-  .lead{font-size:16px}
+/* Адаптив: уменьшаем отступы и размеры на узких экранах,
+   чтобы всё влезало без скролла */
+@media (max-width:900px){
+  .hero{transform:translateY(-9vh)}
+  h1{font-size:36px}
   .desc{font-size:14px}
-  .store-row{flex-direction:column-reverse; gap:12px} /* App Store сверху */
-  .store-img{width:168px}
-  .actions{margin-bottom:18px; margin-top:12px}
-  .hero{transform:translateY(-3vh)} /* меньше смещение на узких экранах */
+}
+@media (max-width:600px){
+  .wrap{padding:14px}
+  .hero{transform:translateY(-6vh)}
+  h1{font-size:30px}
+  .lead{font-size:15px}
+  .desc{font-size:13px; max-width:92%}
+  .store-row{flex-direction:column-reverse; gap:10px}
+  .store-img{width:clamp(120px,28vw,168px); max-width:70%}
+  .actions{gap:6px; padding-bottom:8px}
+}
+@media (max-height:640px){
+  /* если высота экрана очень мала — уменьшаем подъём и шрифты */
+  .hero{transform:translateY(-4vh)}
+  h1{font-size:28px}
+  .desc{font-size:12px}
+  .store-img{width:clamp(100px,22vw,150px)}
 }
   </style>
 </head>
