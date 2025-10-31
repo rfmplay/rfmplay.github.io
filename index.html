@@ -131,15 +131,28 @@ h1{
   order:2;
 }
 
+/* Desktop store link */
+.store-link{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:none;
+  border:none;
+  padding:0;
+  cursor:pointer;
+  transition: transform 0.2s ease;
+}
+.store-link:hover{
+  transform:scale(1.04);
+}
+
 .store-img{
   width:clamp(160px,18vw,240px); 
   height:auto; 
   display:block; 
   filter:contrast(1.05);
   object-fit:contain;
-  transition: transform 0.2s ease;
 }
-.store-img:hover{transform:scale(1.04)}
 
 /* ============================================
    FIXED FOOTER — ВСЕГДА ВНИЗУ ЭКРАНА
@@ -220,7 +233,7 @@ footer{
   /* Store buttons ВЕРТИКАЛЬНО — НИЖЕ относительно текста */
   .middle-section{
     flex:1;
-    padding:4px 0 8px 0;      /* 👈 МЕНЯЙ ТУТ ПЕРВОЕ ЧИСЛО: 6px = расстояние от текста */
+    padding:6px 0 8px 0;
     display:flex;
     align-items:center;
   }
@@ -228,14 +241,32 @@ footer{
   .store-row{
     flex-direction:column;
     gap:10px;
+    align-items:center;
   }
 
-  /* ОДИНАКОВАЯ ШИРИНА И ВЫСОТА для обеих кнопок */
-  .store-img{
+  /* ФИКСИРОВАННЫЙ КОНТЕЙНЕР для каждой кнопки */
+  .store-link{
     width:145px;
     height:52px;
-    display:block;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:12px;
+    overflow:hidden;
+    background:none;
+    transition:none;
+  }
+  .store-link:hover{
+    transform:none;
+  }
+
+  /* Изображение займет всё место контейнера */
+  .store-img{
+    width:100%;
+    height:100%;
     object-fit:contain;
+    display:block;
+    filter:contrast(1.05);
   }
 
   /* Fixed footer на мобилях */
@@ -272,15 +303,18 @@ footer{
     font-size:11px;
   }
   .middle-section{
-    padding:4px 0 6px 0;     /* 👈 МЕНЯЙ ТУТ ПЕРВОЕ ЧИСЛО для узких экранов */
+    padding:4px 0 6px 0;
   }
   .store-row{
     gap:8px;
   }
-  .store-img{
+  .store-link{
     width:130px;
     height:47px;
-    object-fit:contain;
+  }
+  .store-img{
+    width:100%;
+    height:100%;
   }
   .footer-block{
     gap:4px;
@@ -335,9 +369,14 @@ footer{
   .store-row{
     gap:8px;
   }
+  .store-link{
+    width:145px;
+    height:52px;
+  }
   .store-img{
-    width:clamp(110px,14vw,150px);
-    height:auto;
+    width:100%;
+    height:100%;
+    object-fit:contain;
   }
   .footer-block{
     gap:3px;
@@ -383,9 +422,13 @@ footer{
   .store-row{
     gap:6px;
   }
+  .store-link{
+    width:130px;
+    height:47px;
+  }
   .store-img{
-    width:clamp(100px,12vw,130px);
-    height:auto;
+    width:100%;
+    height:100%;
   }
   .footer-block{
     gap:2px;
@@ -413,6 +456,11 @@ footer{
     align-items:center;
     padding:0;
   }
+  .store-link{
+    width:auto;
+    height:auto;
+    overflow:visible;
+  }
   .store-img{
     width:clamp(100px,14vw,140px);
     height:auto;
@@ -438,10 +486,10 @@ footer{
     <section class="middle-section">
       <div class="stores" aria-label="Store badges">
         <div class="store-row">
-          <a href="#" aria-label="App Store" class="store-appstore">
+          <a href="#" class="store-link store-appstore" aria-label="App Store">
             <img class="store-img" src="/assets/appstore-badge.svg" alt="Download on the App Store" loading="lazy">
           </a>
-          <a href="#" aria-label="Google Play" class="store-googleplay">
+          <a href="#" class="store-link store-googleplay" aria-label="Google Play">
             <img class="store-img" src="/assets/googleplay-badge.svg" alt="Get it on Google Play" loading="lazy">
           </a>
         </div>
@@ -452,10 +500,10 @@ footer{
   <!-- FIXED FOOTER — ВСЕГДА ВИДНА В НИЖНЕЙ ЧАСТИ ЭКРАНА -->
   <div class="footer-block">
     <section class="actions" aria-label="Legal links">
-      <a class="btn btn-small" href="/privacy/">📜 Privacy Policy</a>
-      <a class="btn btn-small" href="/terms/">📘 Terms of Use</a>
+      <a class="btn btn-small" href="/privacy/">📜 Privacy Policy (EN)</a>
+      <a class="btn btn-small" href="/terms/">📘 Terms of Use (EN)</a>
     </section>
-    <footer>© 2025 Add & Play · Updated 2025-10-27</footer>
+    <footer>© 2025 Add & Play · Updated 2025-10-31</footer>
   </div>
 </body>
 </html>
