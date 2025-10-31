@@ -216,18 +216,24 @@ footer{
     margin:0;
   }
 
-  /* Store buttons ВЕРТИКАЛЬНО (один над другим) */
+  /* Store buttons ВЕРТИКАЛЬНО (один над другим) и ПРИПОДНЯТЫ */
   .middle-section{
     flex:1;
-    padding:8px 0;
+    padding:16px 0 8px 0; /* больше padding сверху, меньше снизу */
+    display:flex;
+    align-items:flex-start;
   }
 
   .store-row{
     flex-direction:column;
-    gap:12px;
+    gap:10px;
   }
+
+  /* ОДИНАКОВАЯ ШИРИНА для обеих кнопок */
   .store-img{
-    width:clamp(130px,22vw,160px);
+    width:145px;
+    height:auto;
+    display:block;
   }
 
   /* Fixed footer на мобилях */
@@ -263,11 +269,14 @@ footer{
   .desc{
     font-size:11px;
   }
+  .middle-section{
+    padding:12px 0 6px 0;
+  }
   .store-row{
     gap:8px;
   }
   .store-img{
-    width:clamp(120px,20vw,145px);
+    width:130px;
   }
   .footer-block{
     gap:4px;
@@ -394,6 +403,10 @@ footer{
     flex-direction:row;
     gap:12px;
   }
+  .middle-section{
+    align-items:center;
+    padding:0;
+  }
   .store-img{
     width:clamp(100px,14vw,140px);
   }
@@ -432,10 +445,10 @@ footer{
   <!-- FIXED FOOTER — ВСЕГДА ВИДНА В НИЖНЕЙ ЧАСТИ ЭКРАНА -->
   <div class="footer-block">
     <section class="actions" aria-label="Legal links">
-      <a class="btn btn-small" href="/privacy/">📜 Privacy Policy</a>
-      <a class="btn btn-small" href="/terms/">📘 Terms of Use</a>
+      <a class="btn btn-small" href="/privacy/">📜 Privacy Policy (EN)</a>
+      <a class="btn btn-small" href="/terms/">📘 Terms of Use (EN)</a>
     </section>
-    <footer>© 2025 Add & Play · Updated 2025-10-31</footer>
+    <footer>© 2025 Add & Play · Updated 2025-10-27</footer>
   </div>
 </body>
 </html>
