@@ -101,12 +101,12 @@ h1{
 
 /* ЦЕНТРАЛЬНАЯ ЧАСТЬ — БЕЙДЖИ СТОРОВ */
 .middle-section{
-  flex:1;
-  padding:64px 0 8px 0;    
   display:flex;
-  align-items:flex-start;
+  align-items:center;
+  justify-content:center;
+  flex:1;
+  min-height:0;
 }
-
 
 .stores{
   display:flex; 
@@ -135,7 +135,8 @@ h1{
   width:clamp(160px,18vw,240px); 
   height:auto; 
   display:block; 
-  filter:contrast(1.05); 
+  filter:contrast(1.05);
+  object-fit:contain;
   transition: transform 0.2s ease;
 }
 .store-img:hover{transform:scale(1.04)}
@@ -216,12 +217,12 @@ footer{
     margin:0;
   }
 
-  /* Store buttons ВЕРТИКАЛЬНО (один над другим) и ПРИПОДНЯТЫ */
+  /* Store buttons ВЕРТИКАЛЬНО — НИЖЕ относительно текста */
   .middle-section{
     flex:1;
-    padding:16px 0 8px 0; /* больше padding сверху, меньше снизу */
+    padding:6px 0 8px 0;      /* 👈 МЕНЯЙ ТУТ ПЕРВОЕ ЧИСЛО: 6px = расстояние от текста */
     display:flex;
-    align-items:flex-start;
+    align-items:center;
   }
 
   .store-row{
@@ -229,11 +230,12 @@ footer{
     gap:10px;
   }
 
-  /* ОДИНАКОВАЯ ШИРИНА для обеих кнопок */
+  /* ОДИНАКОВАЯ ШИРИНА И ВЫСОТА для обеих кнопок */
   .store-img{
     width:145px;
-    height:auto;
+    height:52px;
     display:block;
+    object-fit:contain;
   }
 
   /* Fixed footer на мобилях */
@@ -270,13 +272,15 @@ footer{
     font-size:11px;
   }
   .middle-section{
-    padding:12px 0 6px 0;
+    padding:4px 0 6px 0;     /* 👈 МЕНЯЙ ТУТ ПЕРВОЕ ЧИСЛО для узких экранов */
   }
   .store-row{
     gap:8px;
   }
   .store-img{
     width:130px;
+    height:47px;
+    object-fit:contain;
   }
   .footer-block{
     gap:4px;
@@ -333,6 +337,7 @@ footer{
   }
   .store-img{
     width:clamp(110px,14vw,150px);
+    height:auto;
   }
   .footer-block{
     gap:3px;
@@ -380,6 +385,7 @@ footer{
   }
   .store-img{
     width:clamp(100px,12vw,130px);
+    height:auto;
   }
   .footer-block{
     gap:2px;
@@ -409,6 +415,7 @@ footer{
   }
   .store-img{
     width:clamp(100px,14vw,140px);
+    height:auto;
   }
 }
   </style>
@@ -448,7 +455,7 @@ footer{
       <a class="btn btn-small" href="/privacy/">📜 Privacy Policy</a>
       <a class="btn btn-small" href="/terms/">📘 Terms of Use</a>
     </section>
-    <footer>© 2025 Add & Play · Updated 2025-10-31</footer>
+    <footer>© 2025 Add & Play · Updated 2025-10-27</footer>
   </div>
 </body>
 </html>
