@@ -23,7 +23,7 @@ html,body{
   background:var(--bg); color:var(--fg);
   font-family:var(--font);
   height:100vh;
-  overflow:hidden; /* полностью убираем прокрутку */
+  overflow:hidden;
   -webkit-font-smoothing:antialiased;
   -moz-osx-font-smoothing:grayscale;
   box-sizing:border-box;
@@ -47,14 +47,10 @@ a{color:var(--fg);text-decoration:none}
 }
 .btn-small:hover{opacity:1}
 
-.row{display:flex; gap:10px; flex-wrap:wrap; align-items:center; justify-content:center}
-.small{font-size:13px; color:var(--muted)}
-
 /* Контейнер на весь экран без прокрутки */
 .wrap{
-  max-width:var(--maxw);
+  width:100%;
   height:100vh;
-  margin:0 auto;
   padding:32px 20px 20px;
   display:flex;
   flex-direction:column;
@@ -62,16 +58,13 @@ a{color:var(--fg);text-decoration:none}
   align-items:center;
 }
 
-/* Центральный блок — заголовок и текст высоко */
-.center{
+/* Верхняя часть — заголовок и текст */
+.top-section{
   display:flex;
   flex-direction:column;
   align-items:center;
-  justify-content:flex-start;
-  gap:40px;
-  flex:1;
-  width:100%;
-  padding-top:8vh;
+  text-align:center;
+  gap:12px;
 }
 
 /* Hero — заголовок и текст */
@@ -81,7 +74,6 @@ a{color:var(--fg);text-decoration:none}
   align-items:center; 
   text-align:center; 
   gap:12px;
-  margin-bottom:0;
 }
 h1{
   font-family:'Baron Neue', sans-serif; 
@@ -106,12 +98,18 @@ h1{
   margin:0;
 }
 
-/* Бейджи сторов — КРУПНЕЕ И ЦЕНТРИРОВАНЫ */
+/* ЦЕНТРАЛЬНАЯ ЧАСТЬ — БЕЙДЖИ СТОРОВ В ЦЕНТРЕ ЭКРАНА */
+.middle-section{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex:1;
+}
+
 .stores{
   display:flex; 
   align-items:center; 
-  justify-content:center; 
-  width:100%;
+  justify-content:center;
 }
 .store-row{
   display:flex; 
@@ -135,11 +133,10 @@ h1{
   flex-direction:column; 
   align-items:center; 
   gap:10px;
-  margin-top:auto;
   padding-bottom:8px;
 }
 
-/* Политики — мельче, ближе к футеру */
+/* Политики */
 .actions{
   display:flex; 
   flex-direction:row; 
@@ -157,7 +154,6 @@ footer{
 
 /* Адаптив */
 @media (max-width:900px){
-  .center{padding-top:6vh; gap:36px}
   h1{font-size:36px}
   .desc{font-size:14px}
   .store-row{gap:24px}
@@ -166,18 +162,15 @@ footer{
 
 @media (max-width:600px){
   .wrap{padding:24px 16px 16px}
-  .center{padding-top:4vh; gap:32px}
   h1{font-size:30px}
   .lead{font-size:16px}
   .desc{font-size:13px; max-width:95%}
   .store-row{flex-direction:column-reverse; gap:16px}
   .store-img{width:clamp(140px,32vw,200px)}
   .actions{flex-direction:column; gap:6px}
-  .footer-block{gap:8px}
 }
 
 @media (max-height:700px){
-  .center{padding-top:3vh; gap:32px}
   h1{font-size:32px}
   .desc{font-size:13px; line-height:1.5}
   .store-row{gap:20px}
@@ -186,7 +179,6 @@ footer{
 
 @media (max-height:600px){
   .wrap{padding:16px 16px 12px}
-  .center{padding-top:2vh; gap:24px}
   h1{font-size:28px}
   .lead{font-size:15px}
   .desc{font-size:12px; max-width:100%}
@@ -200,19 +192,21 @@ footer{
 </head>
 <body>
   <main class="wrap">
-    <!-- HERO + STORES — наверху -->
-    <div class="center">
-      <section class="hero" aria-label="Hero">
+    <!-- TOP SECTION — заголовок и текст -->
+    <section class="top-section">
+      <div class="hero" aria-label="Hero">
         <h1>Add & Play</h1>
         <p class="lead">Simple. Elegant. Yours.</p>
         <p class="desc">
           A minimalist player for internet radio streams. Add your station URL and enjoy a clean, distraction-free experience —
           perfect for listeners and creators who want a beautiful app without ads, accounts, or subscriptions.
         </p>
-      </section>
+      </div>
+    </section>
 
-      <!-- STORES -->
-      <section class="stores" aria-label="Store badges">
+    <!-- MIDDLE SECTION — БЕЙДЖИ СТОРОВ В ЦЕНТРЕ ЭКРАНА -->
+    <section class="middle-section">
+      <div class="stores" aria-label="Store badges">
         <div class="store-row">
           <a href="#" aria-label="Google Play (coming soon)">
             <img class="store-img" src="/assets/googleplay-badge.svg" alt="Get it on Google Play" loading="lazy">
@@ -221,16 +215,16 @@ footer{
             <img class="store-img" src="/assets/appstore-badge.svg" alt="Download on the App Store" loading="lazy">
           </a>
         </div>
-      </section>
-    </div>
+      </div>
+    </section>
 
-    <!-- FOOTER BLOCK — внизу, policies мельче и ближе -->
+    <!-- FOOTER BLOCK — внизу -->
     <div class="footer-block">
       <section class="actions" aria-label="Legal links">
-        <a class="btn btn-small" href="/privacy/">📜 Privacy Policy (EN/RU)</a>
-        <a class="btn btn-small" href="/terms/">📘 Terms of Use (EN/RU)</a>
+        <a class="btn btn-small" href="/privacy/">📜 Privacy Policy</a>
+        <a class="btn btn-small" href="/terms/">📘 Terms of Use</a>
       </section>
-      <footer>© 2025 Add & Play · Updated 2025-10-31</footer>
+      <footer>© 2025 Add & Play · Updated 2025-10-27</footer>
     </div>
   </main>
 </body>
