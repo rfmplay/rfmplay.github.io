@@ -23,7 +23,7 @@ html,body{
   background:var(--bg); color:var(--fg);
   font-family:var(--font);
   height:100%;
-  overflow:hidden; /* без прокрутки */
+  overflow:auto; /* разрешаем прокрутку для очень маленьких экранов */
 }
 a{color:var(--fg);text-decoration:none}
 .btn{
@@ -41,12 +41,13 @@ a{color:var(--fg);text-decoration:none}
   min-height:100vh;
   margin:0 auto;
   padding:16px;
+  padding-bottom:48px; /* дополнительный отступ снизу, чтобы footer был виден */
   display:flex;
   flex-direction:column;
 }
 
-/* Центрируем основной блок (hero + stores) внутри доступной высоты,
-   и даём небольшой отступ сверху, чтобы бейджи оказывались ближе к центру экрана */
+/* Центрируем основной блок (hero + stores) внутри доступной высоты.
+   Смещаем немного вверх overall, а сам .hero поднимаем ещё выше */
 .center{
   flex:1 0 auto;
   display:flex;
@@ -54,12 +55,15 @@ a{color:var(--fg);text-decoration:none}
   align-items:center;
   justify-content:center;
   gap:18px;
-  padding-top:6vh;   /* смещает блок вниз на всех экранах */
-  padding-bottom:4vh;
+  padding-top:3vh;   /* меньше, чем было — поднимает блок вверх */
+  padding-bottom:6vh;
 }
 
 /* Hero */
-.hero{display:flex; flex-direction:column; align-items:center; text-align:center; gap:10px}
+.hero{
+  display:flex; flex-direction:column; align-items:center; text-align:center; gap:10px;
+  transform:translateY(-5vh); /* поднимаем заголовок/описание выше центра */
+}
 h1{
   font-family:'Baron Neue', sans-serif; font-weight:700;
   font-size:40px; line-height:1.1; margin:0; letter-spacing:.5px;
@@ -73,21 +77,26 @@ h1{
 .store-row{display:flex; flex-direction:row; gap:20px; align-items:center; justify-content:center}
 .store-img{width:200px; height:auto; display:block; filter:contrast(1.05)}
 
-/* Actions — ПРИПОДНЯТЫ ВЫШЕ НИЗА: даём дополнительный отступ снизу */
-.actions{margin-top:auto; margin-bottom:32px; display:flex; flex-direction:column; align-items:center}
+/* Actions — приподнимаем от нижнего края: убираем авто-отталкивание вниз */
+.actions{
+  margin-top:16px; /* фиксированный отступ, поднимает блок выше от низа */
+  margin-bottom:22px;
+  display:flex; flex-direction:column; align-items:center;
+}
 
 /* Footer у самого низа — немного выше нижнего края */
-footer{color:var(--muted); font-size:13px; text-align:center; padding:0 0 8px}
+footer{color:var(--muted); font-size:13px; text-align:center; padding:6px 0 12px}
 
 /* Mobile tweaks */
 @media (max-width:600px){
-  .wrap{padding:12px}
+  .wrap{padding:12px; padding-bottom:36px}
   h1{font-size:34px}
   .lead{font-size:16px}
   .desc{font-size:14px}
   .store-row{flex-direction:column-reverse; gap:12px} /* App Store сверху */
   .store-img{width:168px}
-  .actions{margin-bottom:24px}
+  .actions{margin-bottom:18px; margin-top:12px}
+  .hero{transform:translateY(-3vh)} /* меньше смещение на узких экранах */
 }
   </style>
 </head>
