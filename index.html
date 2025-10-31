@@ -65,6 +65,7 @@ a{color:var(--fg);text-decoration:none}
   align-items:center;
   text-align:center;
   gap:12px;
+  flex:0 0 auto;
 }
 
 /* Hero — заголовок и текст */
@@ -104,6 +105,7 @@ h1{
   align-items:center;
   justify-content:center;
   flex:1;
+  min-height:0; /* важно для flexbox */
 }
 
 .stores{
@@ -134,6 +136,7 @@ h1{
   align-items:center; 
   gap:10px;
   padding-bottom:8px;
+  flex:0 0 auto;
 }
 
 /* Политики */
@@ -152,7 +155,10 @@ footer{
   margin:0;
 }
 
-/* Адаптив */
+/* ============================================
+   АДАПТИВ ДЛЯ МОБИЛЬНЫХ УСТРОЙСТВ
+   ============================================ */
+
 @media (max-width:900px){
   h1{font-size:36px}
   .desc{font-size:14px}
@@ -160,33 +166,173 @@ footer{
   .store-img{width:clamp(150px,17vw,220px)}
 }
 
+/* МОБИЛЬНЫЕ УСТРОЙСТВА — все элементы подстраиваются */
 @media (max-width:600px){
-  .wrap{padding:24px 16px 16px}
-  h1{font-size:30px}
-  .lead{font-size:16px}
-  .desc{font-size:13px; max-width:95%}
-  .store-row{flex-direction:column-reverse; gap:16px}
-  .store-img{width:clamp(140px,32vw,200px)}
-  .actions{flex-direction:column; gap:6px}
+  .wrap{
+    padding:16px 12px 12px;
+  }
+
+  .top-section{
+    gap:8px;
+  }
+
+  h1{
+    font-size:28px;
+    line-height:1;
+  }
+  .lead{
+    font-size:14px;
+    margin-top:-2px;
+  }
+  .desc{
+    font-size:12px; 
+    max-width:100%;
+    line-height:1.5;
+  }
+
+  /* Store buttons меньше на мобильных */
+  .store-row{
+    flex-direction:column-reverse;
+    gap:12px;
+  }
+  .store-img{
+    width:clamp(130px,25vw,160px);
+  }
+
+  /* Footer подстраивается */
+  .footer-block{
+    gap:6px;
+  }
+  .actions{
+    flex-direction:column;
+    gap:4px;
+  }
+  .btn-small{
+    font-size:10px;
+    padding:5px 8px;
+  }
+  footer{
+    font-size:10px;
+  }
 }
 
-@media (max-height:700px){
-  h1{font-size:32px}
-  .desc{font-size:13px; line-height:1.5}
-  .store-row{gap:20px}
-  .store-img{width:clamp(140px,18vw,190px)}
+/* ОЧЕНЬ УЗКИЕ ЭКРАНЫ */
+@media (max-width:380px){
+  .wrap{
+    padding:12px 10px 10px;
+  }
+  h1{
+    font-size:24px;
+  }
+  .lead{
+    font-size:12px;
+  }
+  .desc{
+    font-size:11px;
+  }
+  .store-img{
+    width:clamp(110px,24vw,140px);
+  }
+  .btn-small{
+    font-size:9px;
+    padding:4px 6px;
+  }
 }
 
+/* НИЗКИЕ ЭКРАНЫ (высота 600px и ниже) */
 @media (max-height:600px){
-  .wrap{padding:16px 16px 12px}
-  h1{font-size:28px}
-  .lead{font-size:15px}
-  .desc{font-size:12px; max-width:100%}
-  .hero{gap:8px}
-  .store-row{gap:16px}
-  .store-img{width:clamp(120px,18vw,170px)}
-  .footer-block{gap:6px}
-  footer{font-size:11px}
+  .wrap{
+    padding:16px 16px 12px;
+  }
+  h1{
+    font-size:28px;
+  }
+  .lead{
+    font-size:15px;
+  }
+  .desc{
+    font-size:12px;
+    line-height:1.4;
+  }
+  .store-row{
+    gap:16px;
+  }
+  .store-img{
+    width:clamp(120px,18vw,170px);
+  }
+  .footer-block{
+    gap:6px;
+  }
+  footer{
+    font-size:11px;
+  }
+}
+
+/* ЭКСТРЕМАЛЬНО НИЗКИЕ ЭКРАНЫ (высота 500px и ниже) */
+@media (max-height:500px){
+  .wrap{
+    padding:12px 12px 10px;
+  }
+  h1{
+    font-size:22px;
+    margin:0;
+  }
+  .lead{
+    font-size:13px;
+    margin:0;
+  }
+  .desc{
+    font-size:11px;
+    line-height:1.3;
+    max-width:95%;
+  }
+  .store-row{
+    gap:12px;
+  }
+  .store-img{
+    width:clamp(110px,16vw,150px);
+  }
+  .footer-block{
+    gap:5px;
+  }
+  .actions{
+    gap:3px;
+  }
+  .btn-small{
+    font-size:9px;
+    padding:4px 6px;
+  }
+  footer{
+    font-size:10px;
+  }
+}
+
+/* КОМБО: мобильная ширина + низкая высота */
+@media (max-width:600px) and (max-height:500px){
+  .wrap{
+    padding:10px 10px 8px;
+  }
+  .top-section{
+    gap:4px;
+  }
+  h1{
+    font-size:20px;
+  }
+  .lead{
+    font-size:12px;
+  }
+  .desc{
+    font-size:10px;
+  }
+  .store-row{
+    gap:10px;
+  }
+  .store-img{
+    width:clamp(100px,20vw,140px);
+  }
+  .footer-block{
+    gap:4px;
+  }
 }
   </style>
 </head>
@@ -224,7 +370,7 @@ footer{
         <a class="btn btn-small" href="/privacy/">📜 Privacy Policy</a>
         <a class="btn btn-small" href="/terms/">📘 Terms of Use</a>
       </section>
-      <footer>© 2025 Add & Play · Updated 2025-10-27</footer>
+      <footer>© 2025 Add & Play · Updated 2025-10-31</footer>
     </div>
   </main>
 </body>
