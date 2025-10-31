@@ -47,15 +47,15 @@ a{color:var(--fg);text-decoration:none}
 }
 .btn-small:hover{opacity:1}
 
-/* Контейнер на весь экран без прокрутки */
+/* Контейнер — без footer */
 .wrap{
   width:100%;
   height:100vh;
   padding:32px 20px 20px;
   display:flex;
   flex-direction:column;
-  justify-content:space-between;
   align-items:center;
+  box-sizing:border-box;
 }
 
 /* Верхняя часть — заголовок и текст */
@@ -129,15 +129,21 @@ h1{
 }
 .store-img:hover{transform:scale(1.04)}
 
-/* Footer блок — внизу экрана */
+/* ============================================
+   FIXED FOOTER — ВСЕГДА ВНИЗУ ЭКРАНА
+   ============================================ */
 .footer-block{
+  position:fixed;
+  bottom:0;
+  left:0;
+  right:0;
   display:flex; 
   flex-direction:column; 
   align-items:center; 
   gap:10px;
-  padding-bottom:8px;
-  flex:0 0 auto;
-  width:100%;
+  padding:12px 16px;
+  background:var(--bg);
+  z-index:100;
 }
 
 /* Политики */
@@ -146,6 +152,7 @@ h1{
   flex-direction:row; 
   align-items:center; 
   gap:8px;
+  justify-content:center;
 }
 
 footer{
@@ -164,6 +171,10 @@ footer{
     flex-direction:row;
     gap:28px;
   }
+  .footer-block{
+    gap:10px;
+    padding:12px 16px;
+  }
 }
 
 /* ============================================
@@ -172,12 +183,10 @@ footer{
 @media (max-width:600px){
   .wrap{
     padding:12px 12px 10px;
-    gap:8px;
   }
 
   .top-section{
     gap:4px;
-    flex:0 0 auto;
   }
 
   h1{
@@ -196,11 +205,10 @@ footer{
     margin:0;
   }
 
-  /* Store buttons НЕ растягиваются, просто компактные */
+  /* Store buttons компактные */
   .middle-section{
-    flex:0 0 auto;
+    flex:1;
     padding:8px 0;
-    min-height:auto;
   }
 
   .store-row{
@@ -211,16 +219,15 @@ footer{
     width:clamp(110px,20vw,135px);
   }
 
-  /* Footer видим всегда */
+  /* Fixed footer на мобилях */
   .footer-block{
-    gap:4px;
-    flex:0 0 auto;
+    gap:5px;
+    padding:8px 12px;
   }
   .actions{
     flex-direction:row;
     gap:4px;
     flex-wrap:wrap;
-    justify-content:center;
   }
   .btn-small{
     font-size:9px;
@@ -228,7 +235,6 @@ footer{
   }
   footer{
     font-size:9px;
-    margin:0;
   }
 }
 
@@ -252,9 +258,16 @@ footer{
   .store-img{
     width:clamp(100px,18vw,125px);
   }
+  .footer-block{
+    gap:4px;
+    padding:6px 10px;
+  }
   .btn-small{
     font-size:8px;
     padding:3px 5px;
+  }
+  footer{
+    font-size:8px;
   }
 }
 
@@ -275,7 +288,6 @@ footer{
 @media (max-height:600px){
   .wrap{
     padding:10px 12px 8px;
-    gap:6px;
   }
   .top-section{
     gap:2px;
@@ -295,7 +307,6 @@ footer{
   }
   .middle-section{
     padding:4px 0;
-    flex:0 0 auto;
   }
   .store-row{
     gap:8px;
@@ -304,7 +315,8 @@ footer{
     width:clamp(100px,14vw,130px);
   }
   .footer-block{
-    gap:2px;
+    gap:3px;
+    padding:6px 10px;
   }
   .actions{
     gap:2px;
@@ -322,7 +334,6 @@ footer{
 @media (max-height:500px){
   .wrap{
     padding:8px 10px 6px;
-    gap:4px;
   }
   .top-section{
     gap:1px;
@@ -343,7 +354,6 @@ footer{
   }
   .middle-section{
     padding:3px 0;
-    flex:0 0 auto;
   }
   .store-row{
     gap:6px;
@@ -352,7 +362,8 @@ footer{
     width:clamp(90px,12vw,120px);
   }
   .footer-block{
-    gap:1px;
+    gap:2px;
+    padding:5px 8px;
   }
   .actions{
     gap:1px;
@@ -394,15 +405,15 @@ footer{
         </div>
       </div>
     </section>
-
-    <!-- FOOTER BLOCK — внизу -->
-    <div class="footer-block">
-      <section class="actions" aria-label="Legal links">
-        <a class="btn btn-small" href="/privacy/">📜 Privacy Policy</a>
-        <a class="btn btn-small" href="/terms/">📘 Terms of Use</a>
-      </section>
-      <footer>© 2025 Add & Play · Updated 2025-10-31</footer>
-    </div>
   </main>
+
+  <!-- FIXED FOOTER — ВСЕГДА ВИДНА В НИЖНЕЙ ЧАСТИ ЭКРАНА -->
+  <div class="footer-block">
+    <section class="actions" aria-label="Legal links">
+      <a class="btn btn-small" href="/privacy/">📜 Privacy Policy</a>
+      <a class="btn btn-small" href="/terms/">📘 Terms of Use</a>
+    </section>
+    <footer>© 2025 Add & Play · Updated 2025-10-31</footer>
+  </div>
 </body>
 </html>
