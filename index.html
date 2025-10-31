@@ -85,6 +85,16 @@ h1{
   letter-spacing:.5px;
   text-transform:capitalize;
 }
+/* Logo instead of h1 */
+.logo {
+  width:clamp(80px, 20vw, 140px);
+  height:auto;
+  display:block;
+  filter:contrast(1.05);
+  margin:0;
+  margin-bottom:8px;
+}
+
 .lead{
   font-size:18px; 
   color:var(--muted); 
@@ -218,6 +228,12 @@ footer{
     font-size:24px;
     line-height:1.1;
     margin:0;
+  }
+  
+  /* Logo responsive on mobile */
+  .logo{
+    width:clamp(60px, 18vw, 100px);
+    margin-bottom:6px;
   }
   .lead{
     font-size:14px;
@@ -473,7 +489,7 @@ footer{
     <!-- TOP SECTION — заголовок и текст -->
     <section class="top-section">
       <div class="hero" aria-label="Hero">
-        <h1>Add & Play</h1>
+        <img class="logo" src="/assets/logo.png" alt="Add & Play" loading="lazy">
         <p class="lead">Simple. Elegant. Yours.</p>
         <p class="desc">
           A minimalist player for internet radio streams. Add your station URL and enjoy a clean, distraction-free experience —
@@ -500,8 +516,8 @@ footer{
   <!-- FIXED FOOTER — ВСЕГДА ВИДНА В НИЖНЕЙ ЧАСТИ ЭКРАНА -->
   <div class="footer-block">
     <section class="actions" aria-label="Legal links">
-      <a class="btn btn-small" href="/privacy/">📜 Privacy Policy</a>
-      <a class="btn btn-small" href="/terms/">📘 Terms of Use</a>
+      <a class="btn btn-small" href="/privacy/">📜 Privacy Policy (EN)</a>
+      <a class="btn btn-small" href="/terms/">📘 Terms of Use (EN)</a>
     </section>
     <footer>© 2025 Add & Play · Updated 2025-10-31</footer>
   </div>
