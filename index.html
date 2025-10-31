@@ -120,6 +120,17 @@ h1{
   align-items:center; 
   justify-content:center;
 }
+
+/* App Store — всегда первый */
+.store-appstore{
+  order:1;
+}
+
+/* Google Play — всегда второй */
+.store-googleplay{
+  order:2;
+}
+
 .store-img{
   width:clamp(160px,18vw,240px); 
   height:auto; 
@@ -178,7 +189,7 @@ footer{
 }
 
 /* ============================================
-   МОБИЛЬНЫЕ УСТРОЙСТВА — КОМПАКТНАЯ ВЕРСИЯ
+   МОБИЛЬНЫЕ УСТРОЙСТВА ПОРТРЕТНЫЙ РЕЖИМ
    ============================================ */
 @media (max-width:600px){
   .wrap{
@@ -205,18 +216,18 @@ footer{
     margin:0;
   }
 
-  /* Store buttons компактные */
+  /* Store buttons ВЕРТИКАЛЬНО (один над другим) */
   .middle-section{
     flex:1;
     padding:8px 0;
   }
 
   .store-row{
-    flex-direction:row;
-    gap:10px;
+    flex-direction:column;
+    gap:12px;
   }
   .store-img{
-    width:clamp(110px,20vw,135px);
+    width:clamp(130px,22vw,160px);
   }
 
   /* Fixed footer на мобилях */
@@ -256,7 +267,7 @@ footer{
     gap:8px;
   }
   .store-img{
-    width:clamp(100px,18vw,125px);
+    width:clamp(120px,20vw,145px);
   }
   .footer-block{
     gap:4px;
@@ -312,7 +323,7 @@ footer{
     gap:8px;
   }
   .store-img{
-    width:clamp(100px,14vw,130px);
+    width:clamp(110px,14vw,150px);
   }
   .footer-block{
     gap:3px;
@@ -359,7 +370,7 @@ footer{
     gap:6px;
   }
   .store-img{
-    width:clamp(90px,12vw,120px);
+    width:clamp(100px,12vw,130px);
   }
   .footer-block{
     gap:2px;
@@ -374,6 +385,17 @@ footer{
   }
   footer{
     font-size:7px;
+  }
+}
+
+/* ЛАНДШАФТНЫЙ РЕЖИМ НА МОБИЛЯХ (max-height 500px) */
+@media (max-width:900px) and (max-height:500px){
+  .store-row{
+    flex-direction:row;
+    gap:12px;
+  }
+  .store-img{
+    width:clamp(100px,14vw,140px);
   }
 }
   </style>
@@ -396,11 +418,11 @@ footer{
     <section class="middle-section">
       <div class="stores" aria-label="Store badges">
         <div class="store-row">
-          <a href="#" aria-label="Google Play (coming soon)">
-            <img class="store-img" src="/assets/googleplay-badge.svg" alt="Get it on Google Play" loading="lazy">
-          </a>
-          <a href="#" aria-label="App Store (coming soon)">
+          <a href="#" aria-label="App Store" class="store-appstore">
             <img class="store-img" src="/assets/appstore-badge.svg" alt="Download on the App Store" loading="lazy">
+          </a>
+          <a href="#" aria-label="Google Play" class="store-googleplay">
+            <img class="store-img" src="/assets/googleplay-badge.svg" alt="Get it on Google Play" loading="lazy">
           </a>
         </div>
       </div>
