@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -22,7 +23,7 @@ html,body{
   margin:0; padding:0;
   background:var(--bg); color:var(--fg);
   font-family:var(--font);
-  height:100%;
+  height:100vh;
   overflow:hidden; /* полностью убираем прокрутку */
   -webkit-font-smoothing:antialiased;
   -moz-osx-font-smoothing:grayscale;
@@ -35,92 +36,169 @@ a{color:var(--fg);text-decoration:none}
   padding:10px 14px; border:1px solid var(--stroke);
   border-radius:12px; background:var(--btnbg);
   white-space:nowrap;
+  transition: all 0.2s ease;
 }
-.btn:hover{border-color:var(--accent)}
-.row{display:flex; gap:12px; flex-wrap:wrap; align-items:center; justify-content:center}
+.btn:hover{border-color:var(--accent); transform:translateY(-1px)}
+
+/* Кнопки политик — мельче */
+.btn-small{
+  font-size:11px; 
+  padding:6px 10px;
+  opacity:0.85;
+}
+.btn-small:hover{opacity:1}
+
+.row{display:flex; gap:10px; flex-wrap:wrap; align-items:center; justify-content:center}
 .small{font-size:13px; color:var(--muted)}
 
-/* Полный экран, распределяем пространство так, чтобы футер и политики были видны */
+/* Контейнер на весь экран без прокрутки */
 .wrap{
   max-width:var(--maxw);
-  height:100vh;               /* занять весь экран без прокрутки */
+  height:100vh;
   margin:0 auto;
-  padding:20px 18px;
-  padding-bottom:48px;       /* поднять footer/политики выше от нижнего края */
+  padding:32px 20px 20px;
   display:flex;
   flex-direction:column;
-  justify-content:space-between; /* сверху — центр блока, внизу — политики+футер */
+  justify-content:space-between;
   align-items:center;
 }
 
-/* Центрируем основной блок (hero + stores).
-   Подняли сам .hero сильнее — заголовок и текст выше экрана */
+/* Центральный блок — заголовок и текст высоко */
 .center{
   display:flex;
   flex-direction:column;
   align-items:center;
-  justify-content:center;
-  gap:14px;
-  flex:0 1 auto;
+  justify-content:flex-start;
+  gap:32px;
+  flex:1;
   width:100%;
-  padding-top:2vh;
+  padding-top:8vh;
 }
 
-/* Делаем заголовок выше центра (не в потолок) */
+/* Hero — заголовок и текст */
 .hero{
-  display:flex; flex-direction:column; align-items:center; text-align:center; gap:10px;
-  transform:translateY(-12vh); /* сильнее поднимаем заголовок/описание */
+  display:flex; 
+  flex-direction:column; 
+  align-items:center; 
+  text-align:center; 
+  gap:12px;
+  margin-bottom:8px;
 }
 h1{
-  font-family:'Baron Neue', sans-serif; font-weight:700;
-  font-size:40px; line-height:1.1; margin:0; letter-spacing:.5px;
+  font-family:'Baron Neue', sans-serif; 
+  font-weight:700;
+  font-size:40px; 
+  line-height:1.1; 
+  margin:0; 
+  letter-spacing:.5px;
   text-transform:capitalize;
 }
-.lead{font-size:18px; color:var(--muted); margin:0}
-.desc{max-width:720px; color:var(--muted); font-size:15px; line-height:1.5; margin:0}
-
-/* Stores — адаптивный размер бейджей (не менял размеры) */
-.stores{display:flex; align-items:center; justify-content:center; margin:6px 0 0; width:100%}
-.store-row{display:flex; flex-direction:row; gap:20px; align-items:center; justify-content:center}
-.store-img{width:clamp(140px,16vw,200px); height:auto; display:block; filter:contrast(1.05); max-width:45%}
-
-/* Policies & footer — приподнять от нижнего края, чтобы всё было видно */
-.actions{
-  display:flex; flex-direction:column; align-items:center; gap:8px;
+.lead{
+  font-size:18px; 
+  color:var(--muted); 
   margin:0;
-  padding-bottom:6px;
+  font-weight:400;
 }
-footer{color:var(--muted); font-size:13px; text-align:center; padding:4px 0 6px}
+.desc{
+  max-width:680px; 
+  color:var(--muted); 
+  font-size:15px; 
+  line-height:1.6; 
+  margin:0;
+}
 
-/* Адаптив: уменьшаем отступы и размеры на узких экранах,
-   чтобы всё влезало без скролла */
+/* Бейджи сторов */
+.stores{
+  display:flex; 
+  align-items:center; 
+  justify-content:center; 
+  width:100%;
+}
+.store-row{
+  display:flex; 
+  flex-direction:row; 
+  gap:20px; 
+  align-items:center; 
+  justify-content:center;
+}
+.store-img{
+  width:clamp(140px,16vw,200px); 
+  height:auto; 
+  display:block; 
+  filter:contrast(1.05); 
+  max-width:45%;
+  transition: transform 0.2s ease;
+}
+.store-img:hover{transform:scale(1.02)}
+
+/* Footer блок — внизу экрана */
+.footer-block{
+  display:flex; 
+  flex-direction:column; 
+  align-items:center; 
+  gap:10px;
+  margin-top:auto;
+  padding-bottom:8px;
+}
+
+/* Политики — мельче, ближе к футеру */
+.actions{
+  display:flex; 
+  flex-direction:row; 
+  align-items:center; 
+  gap:8px;
+}
+
+footer{
+  color:var(--muted); 
+  font-size:12px; 
+  text-align:center; 
+  padding:0;
+  margin:0;
+}
+
+/* Адаптив */
 @media (max-width:900px){
-  .hero{transform:translateY(-13vh)}
+  .center{padding-top:6vh; gap:28px}
   h1{font-size:36px}
   .desc{font-size:14px}
 }
+
 @media (max-width:600px){
-  .wrap{padding:14px; padding-bottom:36px}
-  .hero{transform:translateY(-9vh)}
+  .wrap{padding:24px 16px 16px}
+  .center{padding-top:4vh; gap:24px}
   h1{font-size:30px}
-  .lead{font-size:15px}
-  .desc{font-size:13px; max-width:92%}
-  .store-row{flex-direction:column-reverse; gap:10px}
+  .lead{font-size:16px}
+  .desc{font-size:13px; max-width:95%}
+  .store-row{flex-direction:column-reverse; gap:12px}
   .store-img{width:clamp(120px,28vw,168px); max-width:70%}
-  .actions{gap:6px; padding-bottom:8px}
+  .actions{flex-direction:column; gap:6px}
+  .footer-block{gap:8px}
 }
-@media (max-height:640px){
-  /* если высота экрана очень мала — уменьшаем подъём и шрифты */
-  .hero{transform:translateY(-6vh)}
+
+@media (max-height:700px){
+  .center{padding-top:3vh; gap:20px}
+  h1{font-size:32px}
+  .desc{font-size:13px; line-height:1.5}
+  .store-img{width:clamp(120px,20vw,160px)}
+}
+
+@media (max-height:600px){
+  .wrap{padding:16px 16px 12px}
+  .center{padding-top:2vh; gap:16px}
   h1{font-size:28px}
-  .desc{font-size:12px}
-  .store-img{width:clamp(100px,22vw,150px)}
+  .lead{font-size:15px}
+  .desc{font-size:12px; max-width:100%}
+  .hero{gap:8px; margin-bottom:4px}
+  .store-img{width:clamp(100px,18vw,140px)}
+  .footer-block{gap:6px}
+  footer{font-size:11px}
 }
   </style>
 </head>
 <body>
   <main class="wrap">
-    <!-- CENTERED BLOCK: HERO + STORES -->
+    <!-- HERO + STORES — наверху -->
     <div class="center">
       <section class="hero" aria-label="Hero">
         <h1>Add & Play</h1>
@@ -144,16 +222,14 @@ footer{color:var(--muted); font-size:13px; text-align:center; padding:4px 0 6px}
       </section>
     </div>
 
-    <!-- POLICIES — прямо над футером -->
-    <section class="actions" aria-label="Legal links">
-      <div class="row">
-        <a class="btn" href="/privacy/">📜 Privacy Policy (EN)</a>
-        <a class="btn" href="/terms/">📘 Terms of Use (EN)</a>
-      </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer>© 2025 Add & Play · Updated 2025-10-27</footer>
+    <!-- FOOTER BLOCK — внизу, policies мельче и ближе -->
+    <div class="footer-block">
+      <section class="actions" aria-label="Legal links">
+        <a class="btn btn-small" href="/privacy/">📜 Privacy Policy (EN)</a>
+        <a class="btn btn-small" href="/terms/">📘 Terms of Use (EN)</a>
+      </section>
+      <footer>© 2025 Add & Play · Updated 2025-10-27</footer>
+    </div>
   </main>
 </body>
 </html>
