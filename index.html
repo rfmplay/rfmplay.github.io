@@ -137,6 +137,7 @@ h1{
   gap:10px;
   padding-bottom:8px;
   flex:0 0 auto;
+  width:100%;
 }
 
 /* Политики */
@@ -170,45 +171,50 @@ footer{
    ============================================ */
 @media (max-width:600px){
   .wrap{
-    padding:14px 12px 12px;
+    padding:12px 12px 10px;
+    gap:8px;
   }
 
   .top-section{
-    gap:6px;
+    gap:4px;
+    flex:0 0 auto;
   }
 
   h1{
-    font-size:26px;
+    font-size:24px;
     line-height:1.1;
+    margin:0;
   }
   .lead{
-    font-size:13px;
+    font-size:14px;
     margin:0;
   }
   .desc{
-    font-size:11px; 
+    font-size:12px; 
     max-width:100%;
     line-height:1.4;
+    margin:0;
   }
 
-  /* Store buttons ГОРИЗОНТАЛЬНО но КОМПАКТНЕЕ */
+  /* Store buttons НЕ растягиваются, просто компактные */
   .middle-section{
-    flex:0 1 auto;
+    flex:0 0 auto;
+    padding:8px 0;
     min-height:auto;
-    padding:12px 0;
   }
 
   .store-row{
     flex-direction:row;
-    gap:12px;
+    gap:10px;
   }
   .store-img{
-    width:clamp(120px,22vw,145px);
+    width:clamp(110px,20vw,135px);
   }
 
   /* Footer видим всегда */
   .footer-block{
-    gap:5px;
+    gap:4px;
+    flex:0 0 auto;
   }
   .actions{
     flex-direction:row;
@@ -221,30 +227,30 @@ footer{
     padding:4px 6px;
   }
   footer{
-    font-size:10px;
-    margin-top:2px;
+    font-size:9px;
+    margin:0;
   }
 }
 
 /* ОЧЕНЬ УЗКИЕ ЭКРАНЫ */
 @media (max-width:360px){
   .wrap{
-    padding:10px 10px 10px;
+    padding:10px 10px 8px;
   }
   h1{
-    font-size:22px;
+    font-size:20px;
   }
   .lead{
     font-size:12px;
   }
   .desc{
-    font-size:10px;
+    font-size:11px;
   }
   .store-row{
     gap:8px;
   }
   .store-img{
-    width:clamp(100px,20vw,125px);
+    width:clamp(100px,18vw,125px);
   }
   .btn-small{
     font-size:8px;
@@ -268,46 +274,8 @@ footer{
 /* НИЗКИЕ ЭКРАНЫ (высота 600px и ниже) */
 @media (max-height:600px){
   .wrap{
-    padding:14px 14px 10px;
-  }
-  .top-section{
-    gap:4px;
-  }
-  h1{
-    font-size:24px;
-  }
-  .lead{
-    font-size:12px;
-  }
-  .desc{
-    font-size:10px;
-    line-height:1.3;
-  }
-  .store-row{
-    gap:10px;
-  }
-  .store-img{
-    width:clamp(110px,14vw,160px);
-  }
-  .footer-block{
-    gap:3px;
-  }
-  .actions{
-    gap:3px;
-  }
-  .btn-small{
-    font-size:8px;
-    padding:3px 5px;
-  }
-  footer{
-    font-size:9px;
-  }
-}
-
-/* ЭКСТРЕМАЛЬНО НИЗКИЕ ЭКРАНЫ (высота 500px и ниже) */
-@media (max-height:500px){
-  .wrap{
-    padding:10px 10px 8px;
+    padding:10px 12px 8px;
+    gap:6px;
   }
   .top-section{
     gap:2px;
@@ -317,21 +285,23 @@ footer{
     margin:0;
   }
   .lead{
-    font-size:11px;
+    font-size:12px;
     margin:0;
   }
   .desc{
-    font-size:9px;
+    font-size:10px;
     line-height:1.2;
+    margin:0;
   }
   .middle-section{
-    padding:6px 0;
+    padding:4px 0;
+    flex:0 0 auto;
   }
   .store-row{
     gap:8px;
   }
   .store-img{
-    width:clamp(100px,12vw,140px);
+    width:clamp(100px,14vw,130px);
   }
   .footer-block{
     gap:2px;
@@ -340,11 +310,59 @@ footer{
     gap:2px;
   }
   .btn-small{
+    font-size:8px;
+    padding:3px 5px;
+  }
+  footer{
+    font-size:8px;
+  }
+}
+
+/* ЭКСТРЕМАЛЬНО НИЗКИЕ ЭКРАНЫ (высота 500px и ниже) */
+@media (max-height:500px){
+  .wrap{
+    padding:8px 10px 6px;
+    gap:4px;
+  }
+  .top-section{
+    gap:1px;
+  }
+  h1{
+    font-size:18px;
+    margin:0;
+    line-height:1;
+  }
+  .lead{
+    font-size:11px;
+    margin:0;
+  }
+  .desc{
+    font-size:9px;
+    line-height:1.1;
+    margin:0;
+  }
+  .middle-section{
+    padding:3px 0;
+    flex:0 0 auto;
+  }
+  .store-row{
+    gap:6px;
+  }
+  .store-img{
+    width:clamp(90px,12vw,120px);
+  }
+  .footer-block{
+    gap:1px;
+  }
+  .actions{
+    gap:1px;
+  }
+  .btn-small{
     font-size:7px;
     padding:2px 4px;
   }
   footer{
-    font-size:8px;
+    font-size:7px;
   }
 }
   </style>
