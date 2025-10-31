@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>RFM Play — Simple. Elegant. Yours.</title>
+  <title>Add & Play — Simple. Elegant. Yours.</title>
   <meta name="description" content="Add & Play — minimalist internet radio player. Simple. Elegant. Yours.">
   <link rel="canonical" href="https://rfmplay.github.io/">
 
@@ -45,6 +45,19 @@ a{color:var(--fg);text-decoration:none}
   flex-direction:column;
 }
 
+/* Центрируем основной блок (hero + stores) внутри доступной высоты,
+   и даём небольшой отступ сверху, чтобы бейджи оказывались ближе к центру экрана */
+.center{
+  flex:1 0 auto;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:18px;
+  padding-top:6vh;   /* смещает блок вниз на всех экранах */
+  padding-bottom:4vh;
+}
+
 /* Hero */
 .hero{display:flex; flex-direction:column; align-items:center; text-align:center; gap:10px}
 h1{
@@ -56,14 +69,14 @@ h1{
 .desc{max-width:720px; color:var(--muted); font-size:15px; line-height:1.6; margin:0}
 
 /* Stores — чуть ниже описания */
-.stores{display:flex; align-items:center; justify-content:center; margin:18px 0 0}
+.stores{display:flex; align-items:center; justify-content:center; margin:6px 0 0}
 .store-row{display:flex; flex-direction:row; gap:20px; align-items:center; justify-content:center}
 .store-img{width:200px; height:auto; display:block; filter:contrast(1.05)}
 
-/* Actions — ПРИЖАТЫ К НИЗУ */
-.actions{margin-top:auto; margin-bottom:10px; display:flex; flex-direction:column; align-items:center}
+/* Actions — ПРИПОДНЯТЫ ВЫШЕ НИЗА: даём дополнительный отступ снизу */
+.actions{margin-top:auto; margin-bottom:32px; display:flex; flex-direction:column; align-items:center}
 
-/* Footer у самого низа */
+/* Footer у самого низа — немного выше нижнего края */
 footer{color:var(--muted); font-size:13px; text-align:center; padding:0 0 8px}
 
 /* Mobile tweaks */
@@ -74,33 +87,35 @@ footer{color:var(--muted); font-size:13px; text-align:center; padding:0 0 8px}
   .desc{font-size:14px}
   .store-row{flex-direction:column-reverse; gap:12px} /* App Store сверху */
   .store-img{width:168px}
-  .actions{margin-bottom:8px}
+  .actions{margin-bottom:24px}
 }
   </style>
 </head>
 <body>
   <main class="wrap">
-    <!-- HERO -->
-    <section class="hero">
-      <h1>Add & Play</h1>
-      <p class="lead">Simple. Elegant. Yours.</p>
-      <p class="desc">
-        A minimalist player for internet radio streams. Add your station URL and enjoy a clean, distraction-free experience —
-        perfect for listeners and creators who want a beautiful app without ads, accounts, or subscriptions.
-      </p>
-    </section>
+    <!-- CENTERED BLOCK: HERO + STORES -->
+    <div class="center">
+      <section class="hero" aria-label="Hero">
+        <h1>Add & Play</h1>
+        <p class="lead">Simple. Elegant. Yours.</p>
+        <p class="desc">
+          A minimalist player for internet radio streams. Add your station URL and enjoy a clean, distraction-free experience —
+          perfect for listeners and creators who want a beautiful app without ads, accounts, or subscriptions.
+        </p>
+      </section>
 
-    <!-- STORES -->
-    <section class="stores" aria-label="Store badges">
-      <div class="store-row">
-        <a href="#" aria-label="Google Play (coming soon)">
-          <img class="store-img" src="/assets/googleplay-badge.svg" alt="Get it on Google Play" loading="lazy">
-        </a>
-        <a href="#" aria-label="App Store (coming soon)">
-          <img class="store-img" src="/assets/appstore-badge.svg" alt="Download on the App Store" loading="lazy">
-        </a>
-      </div>
-    </section>
+      <!-- STORES -->
+      <section class="stores" aria-label="Store badges">
+        <div class="store-row">
+          <a href="#" aria-label="Google Play (coming soon)">
+            <img class="store-img" src="/assets/googleplay-badge.svg" alt="Get it on Google Play" loading="lazy">
+          </a>
+          <a href="#" aria-label="App Store (coming soon)">
+            <img class="store-img" src="/assets/appstore-badge.svg" alt="Download on the App Store" loading="lazy">
+          </a>
+        </div>
+      </section>
+    </div>
 
     <!-- POLICIES — прямо над футером -->
     <section class="actions" aria-label="Legal links">
